@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>金価格トレンド</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>金価格トレンド</h1>
+      <p id="updatedAt">データを読み込み中...</p>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <h2>1年</h2>
+        <canvas id="chartYear" aria-label="1年の金価格推移" role="img"></canvas>
+      </article>
+      <article class="card">
+        <h2>1か月</h2>
+        <canvas id="chartMonth" aria-label="1か月の金価格推移" role="img"></canvas>
+      </article>
+      <article class="card">
+        <h2>1週間</h2>
+        <canvas id="chartWeek" aria-label="1週間の金価格推移" role="img"></canvas>
+      </article>
+    </section>
+
+    <section class="card qr-card">
+      <h2>このページURLのQRコード</h2>
+      <p id="pageUrl" class="url-text"></p>
+      <img id="qrImage" alt="このページURLのQRコード" loading="lazy" />
+    </section>
+
+    <p id="error" class="error" hidden></p>
+  </main>
+</body>
+</html>
