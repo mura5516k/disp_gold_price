@@ -3,6 +3,7 @@
   month: "#2f855a",
   week: "#2b6cb0",
 };
+const PUBLISHED_URL = "https://mura5516k.github.io/disp_gold_price/";
 
 function formatJPDate(dateStr) {
   const d = new Date(dateStr);
@@ -71,9 +72,10 @@ function createLineChart(canvasId, rows, color) {
 }
 
 function setupQr() {
-  const pageUrl = window.location.href;
-  document.getElementById("pageUrl").textContent = pageUrl;
-  const encoded = encodeURIComponent(pageUrl);
+  const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+  const qrUrl = isLocal ? PUBLISHED_URL : window.location.href;
+  document.getElementById("pageUrl").textContent = qrUrl;
+  const encoded = encodeURIComponent(qrUrl);
   document.getElementById("qrImage").src =
     `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encoded}`;
 }
@@ -85,7 +87,7 @@ async function init() {
   const updatedAtEl = document.getElementById("updatedAt");
 
   try {
-    const res = await fetch("/api/gold", { cache: "no-store" });
+    const res = await fetch("./gold_data.json", { cache: "no-store" });
     if (!res.ok) {
       throw new Error(`HTTP ${res.status}`);
     }
